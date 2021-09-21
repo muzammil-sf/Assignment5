@@ -1,0 +1,80 @@
+<form id="addForm" [formGroup]="addUserForm" >
+  <div class="form-group">
+    <label for="firstNameInput">First Name</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="First Name"
+      formControlName="fname"
+    />
+  </div>
+  <br />
+  <div class="form-group">
+    <label for="middleNameInput">Middle Name</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Middle Name"
+      formControlName="mname"
+    />
+  </div>
+  <br />
+  <div class="form-group">
+    <label for="lastNameInput">Last Name</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Last Name"
+      formControlName="lname"
+    />
+  </div>
+  <br />
+  <div class="form-group">
+    <label for="emailInput">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      aria-describedby="emailHelp"
+      placeholder="Email"
+      formControlName="email"
+    />
+  </div>
+  <br />
+  <div class="form-group">
+    <label for="phoneNumberInput">Phone Number</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Phone Number"
+      formControlName="pno"
+    />
+  </div>
+  <br />
+  <div class="form-group">
+    <label for="addressInput">Role</label><br />
+    <select
+      class="form-select"
+      aria-label="Default select example"
+      formControlName="role"
+    >
+      <option value="subscriber">Subscriber</option>
+      <option value="admin">Admin</option>
+      <option value="superAdmin">Super Admin</option>
+    </select>
+  </div>
+  <br />
+  <div class="form-group">
+    <label for="addressInput">Address</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Address"
+      formControlName="address"
+    />
+  </div>
+  <br />
+  <label> </label>
+  <button type="button" class="btn btn-primary" (click)="addData()" [disabled]="!addUserForm.valid">
+    Submit
+  </button>
+</form>

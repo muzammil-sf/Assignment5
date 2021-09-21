@@ -1,0 +1,151 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col" class="text-center">First Name</th>
+      <th scope="col" class="text-center">Middle Name</th>
+      <th scope="col" class="text-center">Last Name</th>
+      <th scope="col" class="text-center">Email</th>
+      <th scope="col" class="text-center">Phone Number</th>
+      <th scope="col" class="text-center">Role</th>
+      <th scope="col" class="text-center">Address</th>
+      <th scope="col" class="text-center">Edit</th>
+      <th scope="col" class="text-center">Delete</th>
+    </tr>
+  </thead>
+  <tbody id="tableBody" *ngIf="isLoadData">
+    <tr *ngFor="let user of usersData; let i = index">
+      <td class="text-center" *ngIf="!userEditMode[i]">{{ user.fname }}</td>
+      <td class="text-center" *ngIf="!userEditMode[i]">{{ user.mname }}</td>
+      <td class="text-center" *ngIf="!userEditMode[i]">{{ user.lname }}</td>
+      <td class="text-center" *ngIf="!userEditMode[i]">{{ user.email }}</td>
+      <td class="text-center" *ngIf="!userEditMode[i]">{{ user.pno }}</td>
+      <td class="text-center" *ngIf="!userEditMode[i] && user.role === 'superAdmin'">Super Admin</td>
+      <td class="text-center" *ngIf="!userEditMode[i] && user.role === 'admin'">Admin</td>
+      <td class="text-center" *ngIf="!userEditMode[i] && user.role === 'subscriber'">Subscriber</td>
+      <td class="text-center" *ngIf="!userEditMode[i]">{{ user.address }}</td>
+      <td class="text-center" *ngIf="userEditMode[i]">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="firstNameInput"
+            placeholder="First Name"
+            [formControl]="fname[i]"
+          />
+        </div>
+      </td>
+      <td *ngIf="userEditMode[i]">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="middleNameInput"
+            placeholder="Middle Name"
+            [formControl]="mname[i]"
+          />
+        </div>
+      </td>
+
+      <td *ngIf="userEditMode[i]">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="lastNameInput"
+            placeholder="Last Name"
+            [formControl]="lname[i]"
+          />
+        </div>
+      </td>
+
+      <td *ngIf="userEditMode[i]">
+        <div class="form-group">
+          <input
+            type="email"
+            class="form-control"
+            id="emailInput"
+            placeholder="Email"
+            [formControl]="email[i]"
+          />
+        </div>
+      </td>
+
+      <td *ngIf="userEditMode[i]">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="phoneNumberInput"
+            placeholder="Phone Number"
+            [formControl]="pno[i]"
+          />
+        </div>
+      </td>
+
+      <td *ngIf="userEditMode[i]">
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          [formControl]="role[i]"
+        >
+          <option value="subscriber">Subscriber</option>
+          <option value="admin">Admin</option>
+          <option value="superAdmin">Super Admin</option>
+        </select>
+      </td>
+
+      <td *ngIf="userEditMode[i]">
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            id="addressInput"
+            placeholder="Address"
+            [formControl]="address[i]"
+          />
+        </div>
+      </td>
+
+      <td>
+        <button
+          id="editRow${id}"
+          type="button"
+          (click)="editRow(i)"
+          class="btn btn-success"
+          *ngIf="!userEditMode[i]"
+        >
+          Edit
+        </button>
+        <button
+          id="saveRow${id}"
+          type="button"
+          (click)="saveRow(i)"
+          class="btn btn-success"
+          *ngIf="userEditMode[i]"
+        >
+          Save
+        </button>
+      </td>
+      <td>
+        <button
+          id="deleteRow${id}"
+          type="button"
+          (click)="deleteData(i)"
+          class="btn btn-danger delete${id}"
+          *ngIf="!userEditMode[i]"
+        >
+          Delete
+        </button>
+        <button
+          id="deleteRow${id}"
+          type="button"
+          (click)="cancelEdit(i)"
+          class="btn btn-danger delete${id}"
+          *ngIf="userEditMode[i]"
+        >
+          Cancel
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
